@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rues de Montréal</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script type="module" src="./assets/scripts/main.mjs"></script>
+</head>
+
+<body>
+
+    <header class="top-nav">
+        <span class="logo"><a href="#">Rues piétonnes et partagées</a></span>
+        <span class="filler"></span>
+        <nav class="menuPrincipal">
+        </nav>
+    </header> 
+
+    <main>
+        <div>
+            <div class="recherche">
+                <input type="search" class="champs-rechercher" name="champs-rechercher" placeholder="Recherche par nom"><button class="btn-rechercher">Rechercher</button>
+                <label>Ordre</label>
+                <input type="radio" name="ordre" value="ASC">ASC
+                <input type="radio" name="ordre" value="DESC">DESC
+                <button class="btn-tri-arrondissement">Tri par arrondissement</button>
+                <button class="btn-tri-hierarchie">Tri par hierarchie</button>
+            </div>
+            <div class="bouton-disposition">
+                <button class="bouton-liste">Liste</button>
+                <button class="bouton-galerie">Galerie</button>
+            </div>
+        </div>
+
+
+
+        <aside class="filtre">            
+            <div class="controle">
+                <span class="material-icons">tune</span>
+                <div class="liste-axe">
+
+            </div>
+        
+        </aside>
+
+        <section class="catalogue" data-js-catalogue>
+
+            <article class="carte" data-js-carte>
+
+        </section>
+
+        <section class="sectionModal">
+
+            <dialog close class="modal">
+                <p>Ça marche</p>
+                <button class="boutonModal ferme"></button>
+            </dialog>
+
+        </section>
+    </main>
+
+</body>
+</html>
