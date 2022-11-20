@@ -5,6 +5,7 @@ export default class Tri{
      * @public
      */
     domParent;
+    gabarit;
 
     /**
      * Les données du composant
@@ -24,19 +25,18 @@ export default class Tri{
      * Mutateur (setter) des rues du tri
      * @param {Array} data - Le tableau des rues
      */
-    setRues(data){
-        this.#aData = data;
-        console.log(this.#aData);
-    }
+
 
     //fonction de tri
-    listeTri(params) {
+    async listeTri(params) {
 
         let aRecherche;
+        let data = await fetch('assets/data/rues.json');
+        data = await data.json();
 
         // tri des arrondissements en ordre alphabétique ascendant
         if (params.type == 'ARRONDISSEMENT' && params.valeur == 'ASC'){
-            aRecherche = this.#aData.sort(function (a, b) {
+            aRecherche = data.sort(function (a, b) {
                 if (a.ARRONDISSEMENT > b.ARRONDISSEMENT) {
                 return -1;
                 }
@@ -49,7 +49,7 @@ export default class Tri{
 
         // tri des arrondissements en ordre alphabétique descendant
         if (params.type == 'ARRONDISSEMENT' && params.valeur == 'DESC'){
-            aRecherche = this.#aData.sort(function (a, b) {
+            aRecherche = data.sort(function (a, b) {
                 if (a.ARRONDISSEMENT < b.ARRONDISSEMENT) {
                 return -1;
                 }
@@ -62,7 +62,7 @@ export default class Tri{
 
         // tri de la hierachie routière en ordre alphabétique ascendant
         if (params.type == 'HIERARCHIE_ROUTIERE' && params.valeur == 'ASC'){
-            aRecherche = this.#aData.sort(function (a, b) {
+            aRecherche = data.sort(function (a, b) {
                 if (a.HIERARCHIE_ROUTIERE > b.HIERARCHIE_ROUTIERE) {
                 return -1;
                 }
@@ -75,7 +75,7 @@ export default class Tri{
 
         // tri de la hierachie routière en ordre alphabétique descendant
         if (params.type == 'HIERARCHIE_ROUTIERE' && params.valeur == 'DESC'){
-            aRecherche = this.#aData.sort(function (a, b) {
+            aRecherche = data.sort(function (a, b) {
                 if (a.HIERARCHIE_ROUTIERE < b.HIERARCHIE_ROUTIERE) {
                 return -1;
                 }
@@ -85,35 +85,8 @@ export default class Tri{
                 return 0;
             });
         }
-        return aRecherche;
+        params.cb(aRecherche);;
     }
 
-    /**
-     * Permet de faire le rendu du catalogue dans l'application en fonction des données du tri
-     */
-    rendu(){
-        let chaineHTML = '';
-        this.#aData.forEach(rues => {
-                chaineHTML += `<article class="carte">
-                                <header>
-                                    <h4>${rues.NOM_PROJET} <small>(${rues.ARRONDISSEMENT})</small></h4>
-                                    
-                                </header>
-                                <img src="${rues.PHOTO}">
-                                <div class="contenu">
-                                    <p><i>${rues.TYPE_REPARTAGE}</i></p>
-                                    <p><strong>Hiérarchie routière : </strong>${rues.HIERARCHIE_ROUTIERE}</p>
-                                    <p><strong>Année d'implantation : </strong>${rues.ANNEE_IMPLANTATION_1}</p>
-                                    <p><strong>Attrait(s) :</strong> ${rues.ATTRAIT}</p>
-                                    
-                                </div>
-                                
-                                <footer class="action"><button class="boutonModal" data-js-id="${rues.ID_PROJET}">Plus d'informations</button></footer>
-                            </article>`
-        });
 
-        
-
-        this.domParent.innerHTML = chaineHTML;
-    }
 }

@@ -45,6 +45,10 @@
             <div class="controle">
                 <span class="material-icons">tune</span>
                 <div class="liste-axe">
+                    <script type="tmpl" id="tmpl-affichage-filtre">
+                        <li class="choixFiltre" data-js-cat="TYPE_AXE" data-js-cat-valeur="{{valeur}}" 
+                                data-js-actif="0">{{etiquette}}</li>
+                    </script>
 
             </div>
         
@@ -52,7 +56,24 @@
 
         <section class="catalogue" data-js-catalogue>
 
-            <article class="carte" data-js-carte>
+            <script type="tmpl" id="tmpl-affichage-catalogue">
+                <article class="carte">
+                    <header>
+                        <h4>{{NOM_PROJET}} <small>({{ARRONDISSEMENT}})</small></h4>
+                        
+                    </header>
+                    <img src="{{PHOTO}}">
+                    <div class="contenu">
+                        <p><i>{{TYPE_REPARTAGE}}</i></p>
+                        <p><strong>Hiérarchie routière : </strong>{{HIERARCHIE_ROUTIERE}}</p>
+                        <p><strong>Année d'implantation : </strong>{{ANNEE_IMPLANTATION_1}}</p>
+                        <p><strong>Attrait(s) :</strong> {{ATTRAIT}}</p>
+                        
+                    </div>
+                    
+                    <footer class="action"><button class="boutonModal">Plus d'informations</button></footer>
+                </article>
+                </script>
 
         </section>
 

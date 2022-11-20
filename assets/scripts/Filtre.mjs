@@ -30,19 +30,23 @@ export default class Filtre{
      * @param {String} oCatFiltre.valeur - Valeur pour le filtre
      * @returns {Array} - Les données filtrées
      */
-    appliquerFiltre(data, oCatFiltre){
-        
+    async appliquerFiltre(params){
+        let data = await fetch('assets/data/rues.json');
+        data = await data.json();
         const aRuesFiltre = data.filter((rues)=>{
-            return (rues[oCatFiltre.cat] == oCatFiltre.valeur);
+            return (rues[params.cat] == params.valeur);
         });
-        return aRuesFiltre;
+        params.cb(aRuesFiltre);
     }
 
     /**
      * Création des valeurs de filtre
      * @param {Array} data 
      */
-    setCat(data){
+    async setCat(){
+        
+        let data = await fetch('assets/data/rues.json');
+        data = await data.json();
         let valeurFiltre = [];
         data.forEach((axe)=>{
             valeurFiltre.push(axe.TYPE_AXE);
@@ -50,21 +54,22 @@ export default class Filtre{
 
 
         valeurFiltre = [...new Set(valeurFiltre)];
-        this.#aData = [];
+        data = [];
 
         // Crée le tableau des valeurs de filtre (pour afficher dans le DOM)
         valeurFiltre.forEach((element)=>{
-            this.#aData.push(
+            data.push(
                 {
                     valeur : element, 
                     etiquette : element
                 });
         });
+        return data;
     }
 
     /**
      * Permet de faire le rendu des filtres dans l'application en fonction des données du filtre
-     */
+  
     rendu(){
         let chaineHTML = `<div>Type d'axe<span class="material-icons">arrow_drop_down</span>`;
                 
@@ -74,5 +79,5 @@ export default class Filtre{
         });
         chaineHTML += `</div>`;
         this.domParent.innerHTML = chaineHTML;
-    }
+    }   */
 }
